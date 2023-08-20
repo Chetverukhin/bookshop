@@ -28,7 +28,7 @@ export class AuthenticationComponent {
   }
 
   login() {
-    console.log(this.authenticationForm.value);
+    console.log(this.authenticationForm);
   }
 
   get email() {
