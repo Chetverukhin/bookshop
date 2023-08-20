@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,5 +7,16 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  loginForm: FormControl;
+  loginForm!: FormGroup;
+
+  constructor(private _builder: FormBuilder) {
+    this.loginForm = _builder.group({
+      emailInput: [''],
+      passwordInput: [''],
+    });
+  }
+
+  login() {
+    console.log(this.loginForm.value);
+  }
 }
