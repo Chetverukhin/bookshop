@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-authentication',
@@ -15,7 +15,7 @@ export class AuthenticationComponent {
   authentication = { email: '', password: '' };
   authenticationForm: FormGroup;
 
-  constructor(private _builder: FormBuilder) {
+  constructor(private _builder: FormBuilder, private _authService: AuthService) {
     this.authenticationForm = _builder.group({
       email: [
         this.authentication.email, 
@@ -28,7 +28,9 @@ export class AuthenticationComponent {
   }
 
   login() {
-    console.log(this.authenticationForm);
+    // this._authService.login(this.authenticationForm.value).subscribe(data => {
+    //   console.log(data)
+    // })
   }
 
   get email() {

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -10,8 +12,9 @@ export class RegistrationComponent {
   registration = { userName: '', email: '', password: '' }
   registrationForm: FormGroup;
   emailPattern = '[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}'
+  phonePattern = '^\\+?[78][-\\(]?\\d{3}\\)?-?\\d{3}-?\\d{2}-?\\d{2}$'
 
-  constructor(private _builder: FormBuilder) {  
+  constructor(private _builder: FormBuilder, private _authService : AuthService) {  
 
     this.registrationForm = _builder.group({
       userName: [
@@ -27,7 +30,9 @@ export class RegistrationComponent {
   }
 
   register() {
-    console.log(this.registrationForm)
+    // this._authService.register(this.registrationForm.value).subscribe(data => {
+    //   console.log(data)
+    // })
   }
 
   get userName() {
