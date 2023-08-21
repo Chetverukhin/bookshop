@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { AuthService, Registration } from '../services/auth.service';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
 })
+
 export class RegistrationComponent {
-  registration = { userName: '', email: '', password: '' }
+
+  registration: Registration = { userName: '', email: '', password: '' }
   registrationForm: FormGroup;
+
   emailPattern = '[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}'
   phonePattern = '^\\+?[78][-\\(]?\\d{3}\\)?-?\\d{3}-?\\d{2}-?\\d{2}$'
 
-  constructor(private _builder: FormBuilder, private _authService : AuthService) {  
-
+  constructor(private _builder: FormBuilder, private _authService: AuthService) {
     this.registrationForm = _builder.group({
       userName: [
         this.registration.userName,
@@ -30,9 +31,9 @@ export class RegistrationComponent {
   }
 
   register() {
-    // this._authService.register(this.registrationForm.value).subscribe(data => {
-    //   console.log(data)
-    // })
+    this._authService.register(this.registration).subscribe(response => {
+      console.log("Response")
+    })
   }
 
   get userName() {

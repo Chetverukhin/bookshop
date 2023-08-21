@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
+import { AuthService, Authentication } from '../services/auth.service';
 
 @Component({
   selector: 'app-authentication',
@@ -12,13 +8,13 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./authentication.component.css'],
 })
 export class AuthenticationComponent {
-  authentication = { email: '', password: '' };
+  authentication: Authentication = { email: '', password: '' };
   authenticationForm: FormGroup;
 
   constructor(private _builder: FormBuilder, private _authService: AuthService) {
     this.authenticationForm = _builder.group({
       email: [
-        this.authentication.email, 
+        this.authentication.email,
         [Validators.required]],
       password: [
         this.authentication.password,
@@ -28,9 +24,9 @@ export class AuthenticationComponent {
   }
 
   login() {
-    // this._authService.login(this.authenticationForm.value).subscribe(data => {
-    //   console.log(data)
-    // })
+    this._authService.login(this.authentication).subscribe(response => {
+      console.log(response)
+    })
   }
 
   get email() {
