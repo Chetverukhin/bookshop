@@ -24,7 +24,7 @@ export class AuthenticationComponent {
   }
 
   login() {
-    this._authService.login(this.authentication).subscribe(response => {
+    this._authService.login(this.authenticationForm.value).subscribe(response => {
       console.log(response)
     })
   }

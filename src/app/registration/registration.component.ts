@@ -31,8 +31,8 @@ export class RegistrationComponent {
   }
 
   register() {
-    this._authService.register(this.registration).subscribe(response => {
-      console.log("Response")
+    this._authService.register(this.registrationForm.value).subscribe(response => {
+      console.log(response)
     })
   }
 

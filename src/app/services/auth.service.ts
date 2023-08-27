@@ -19,8 +19,8 @@ export interface Authentication {
 })
 
 export class AuthService {
-  private _loginPath = `${environment.apiUrl}login`
-  private _registerPath = `${environment.apiUrl}register`
+  private _loginPath = `${environment.apiUrl}/Identity/Login`
+  private _registerPath = `${environment.apiUrl}/Identity/Register`
 
   constructor(private _client: HttpClient) { }
 
