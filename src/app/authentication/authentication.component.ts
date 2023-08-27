@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
-import { AuthService, Authentication } from '../services/auth.service';
+import { Authentication, IdentityService } from '../services/identity.service';
 
 @Component({
   selector: 'app-authentication',
@@ -11,7 +11,7 @@ export class AuthenticationComponent {
   authentication: Authentication = { email: '', password: '' };
   authenticationForm: FormGroup;
 
-  constructor(private _builder: FormBuilder, private _authService: AuthService) {
+  constructor(private _builder: FormBuilder, private _identityService: IdentityService) {
     this.authenticationForm = _builder.group({
       email: [
         this.authentication.email,
@@ -24,7 +24,7 @@ export class AuthenticationComponent {
   }
 
   login() {
-    this._authService.login(this.authenticationForm.value).subscribe(response => {
+    this._identityService.login(this.authenticationForm.value).subscribe(response => {
       console.log(response)
     })
   }

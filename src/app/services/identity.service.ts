@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs';
 import { environment } from '../../environments/environments';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface Registration {
   userName: string
@@ -17,8 +17,7 @@ export interface Authentication {
 @Injectable({
   providedIn: 'root'
 })
-
-export class AuthService {
+export class IdentityService {
   private _loginPath = `${environment.apiUrl}/Identity/Login`
   private _registerPath = `${environment.apiUrl}/Identity/Register`
 
