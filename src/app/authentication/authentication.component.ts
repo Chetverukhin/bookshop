@@ -8,7 +8,7 @@ import { Authentication, IdentityService } from '../services/identity.service';
   styleUrls: ['./authentication.component.css'],
 })
 export class AuthenticationComponent {
-  authentication: Authentication = { email: '', password: '' };
+  authentication: Authentication = { email: '', password: '', token: '' };
   authenticationForm: FormGroup;
 
   constructor(private _builder: FormBuilder, private _identityService: IdentityService) {
@@ -25,7 +25,7 @@ export class AuthenticationComponent {
 
   login() {
     this._identityService.login(this.authenticationForm.value).subscribe(response => {
-      console.log(response)
+      this._identityService.setToken(response.token);
     })
   }
 

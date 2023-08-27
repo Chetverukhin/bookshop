@@ -12,6 +12,7 @@ export interface Registration {
 export interface Authentication {
   email: string
   password: string
+  token :string
 }
 
 @Injectable({
@@ -29,5 +30,17 @@ export class IdentityService {
 
   register(data: Registration): Observable<Registration> {
     return this._client.post<Registration>(this._registerPath, data);
+  }
+
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getToken(key: string) {
+    return localStorage.getItem(key);
+  }
+
+  removeToken(key: string) {
+    localStorage.removeItem(key);
   }
 }
