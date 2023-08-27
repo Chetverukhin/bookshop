@@ -12,8 +12,11 @@
                     <div *ngIf="userName.errors?.['required']">
                         Необходимо заполнить поле
                     </div>
-                    <div *ngIf="userName.errors?.['minlength'] || userName.errors?.['maxlength']">
-                        Имя должно содержать от 2 до 20 символов
+                    <div *ngIf="userName.errors?.['minlength']">
+                        Имя должно содержать не менее {{userName.errors?.['minlength'].requiredLength}} символов
+                    </div>
+                    <div *ngIf="userName.errors?.['maxlength']">
+                        Имя должно содержать не более {{userName.errors?.['maxlength'].requiredLength}} символов
                     </div>
                 </div>
 
@@ -47,7 +50,8 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Registration</button>
+                <button type="submit" class="btn btn-primary"
+                    [disabled]="registrationForm.invalid">Registration</button>
             </form>
         </div>
         <div class="col-lg-4"></div>
