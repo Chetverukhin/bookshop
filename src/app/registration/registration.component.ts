@@ -30,6 +30,12 @@ export class RegistrationComponent {
     });
   }
 
+  passLogin() {
+    this._identityService.passLogin().subscribe(response => {
+      console.log(response);
+    })
+  }
+
   register() {
     this._identityService.register(this.registrationForm.value).subscribe(response => {
       console.log(response)

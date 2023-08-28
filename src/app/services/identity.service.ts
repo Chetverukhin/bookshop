@@ -12,7 +12,7 @@ export interface Registration {
 export interface Authentication {
   email: string
   password: string
-  token :string
+  token: string
 }
 
 @Injectable({
@@ -23,6 +23,14 @@ export class IdentityService {
   private _registerPath = `${environment.apiUrl}/Identity/Register`
 
   constructor(private _client: HttpClient) { }
+
+  passLogin() {
+    return this._client.get("https://localhost:7168/Home")
+  }
+
+  isAuthenticated() {
+    return this.getToken('token') ? true : false
+  }
 
   login(data: Authentication): Observable<Authentication> {
     return this._client.post<Authentication>(this._loginPath, data);

@@ -21,7 +21,7 @@ export class AuthenticationComponent {
         [Validators.required, Validators.minLength(6)],
       ],
     });
-  }
+  } 
 
   login() {
     this._identityService.login(this.authenticationForm.value).subscribe(response => {
